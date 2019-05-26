@@ -37,31 +37,59 @@ export default function App() {
 	};
 
 	return (
-		<Fragment>
-			<form onSubmit={handleSearch}>
+		<div
+			className="container max-w-md
+      mx-auto p-4 m-2
+    bg-purple-300
+    shadow-lg rounded"
+		>
+			<img
+				src="https://icon.now.sh/react/c0c"
+				alt="React Logo"
+				className="float-right h-12"
+			/>
+			<h1
+				className="text-grey-darkest
+    font-thin"
+			>
+				{'Hooks News'}
+			</h1>
+			<form onSubmit={handleSearch} className="mb-2">
 				<input
 					type={'text'}
 					onChange={event => setQuery(event.target.value)}
 					value={query}
 					ref={searchInputRef}
+					className="border p-1
+          rounded"
 				/>
-				<button type={'submit'}>{'Search'}</button>
-				<button type={'button'} onClick={handleClearSearch}>
+				<button type={'submit'} className="bg-orange-300 rounded m-1 p-1">
+					{'Search'}
+				</button>
+				<button
+					type={'button'}
+					onClick={handleClearSearch}
+					className="bg-teal-300 text-white p-1 rounded"
+				>
 					{'Clear'}
 				</button>
 			</form>
 			{loading ? (
-				<div>{'Loading results ...'}</div>
+				<div className="font-bold text-orange-500">{'Loading results ...'}</div>
 			) : (
-				<ul>
+				<ul className="list-reset leading-normal">
 					{results.map(results => (
 						<li key={results.objectID}>
-							<a href={results.url}>{results.title}</a>
+							<a href={results.url} className="text-indigo-500">
+								{results.title}
+							</a>
 						</li>
 					))}
-					{error && <div>{error.message}</div>}
+					{error && (
+						<div className="text-red-500 font-bold">{error.message}</div>
+					)}
 				</ul>
 			)}
-		</Fragment>
+		</div>
 	);
 }
