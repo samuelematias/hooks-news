@@ -3,11 +3,11 @@ import axios from 'axios';
 
 export default function App() {
 	const [results, setResults] = useState([]);
-	const [query, setQuery] = useState('reacthooks');
+	const [query, setQuery] = useState('react hooks');
 
 	useEffect(() => {
 		getResults();
-	}, [query]);
+	}, []);
 
 	const getResults = async () => {
 		const response = await axios.get(
@@ -16,9 +16,21 @@ export default function App() {
 		setResults(response.data.hits);
 	};
 
+	const handleSearch = event => {
+		event.preventDefault();
+		getResults();
+	};
+
 	return (
 		<Fragment>
-			<input type={'text'} onChange={event => setQuery(event.target.value)} />
+			<form onSubmit={handleSearch}>
+				<input
+					type={'text'}
+					onChange={event => setQuery(event.target.value)}
+					value={query}
+				/>
+				<button type={'submit'}>{'Search'}</button>
+			</form>
 			<ul>
 				{results.map(results => (
 					<li key={results.objectID}>
