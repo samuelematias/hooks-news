@@ -34,7 +34,7 @@ This app was developed on the Udemy Course [React Hooks](https://www.udemy.com/r
 
 <br/>
 
-### Running it locally
+### Running locally
 
 - `git clone https://github.com/samuelmataraso/hooks-news`
 - `yarn`
